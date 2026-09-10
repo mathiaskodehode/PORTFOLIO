@@ -1,6 +1,6 @@
 {
     "$schema": "./node_modules/oxlint/configuration_schema.json",
-    "plugins": ["typescript", "unicorn", "oxc", "vue"],
+    "plugins": ["typescript", "unicorn", "oxc", "vue", "import"],
     "categories": {
         "correctness": "error",
         "suspicious": "warn",
@@ -14,5 +14,8 @@
     "env": {
         "builtin": true
     },
-    "ignorePatterns": ["**/*.gen.*"]
+    "ignorePatterns": ["**/*.gen.*"],
+    "globals": {
+        "definePage": "readonly"
+    }
 }
