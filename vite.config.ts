@@ -4,8 +4,10 @@ import vue from "@vitejs/plugin-vue";
 import vueDevTools from "vite-plugin-vue-devtools";
 import VueRouter from "vue-router/vite";
 
-// https://vite.dev/config/
+const base = process.env.VITE_BASE_PATH || "/";
+
 export default defineConfig({
+    base,
     plugins: [VueRouter(), vue(), vueDevTools()],
     resolve: {
         alias: {
