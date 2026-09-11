@@ -4,10 +4,14 @@ import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
     plugins: [vue()],
+    optimizeDeps: {
+        include: ["vue", "vitest-browser-vue"],
+    },
     test: {
         browser: {
             enabled: true,
             provider: playwright(),
+            headless: true,
             // https://vitest.dev/config/browser/playwright
             instances: [{ browser: "chromium" }, { browser: "firefox" }, { browser: "webkit" }],
         },

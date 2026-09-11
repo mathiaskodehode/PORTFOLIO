@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { DataLoaderPlugin } from "vue-router/experimental";
 import { routes, handleHotUpdate } from "vue-router/auto-routes";
 import App from "./App.vue";
+// oxlint-disable-next-line import/no-unassigned-import
 import "./style.css";
 
 const router = createRouter({
