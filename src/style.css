@@ -1,12 +1,4 @@
 html {
-    background-color: rgb(32, 32, 32);
-    color: rgb(200, 200, 200);
-}
-
-a:hover {
-    color: rgb(122, 122, 200);
-}
-
-a {
-    color: rgb(166, 166, 255);
+    background: #101010;
+    color: #e8e8e8;
 }
