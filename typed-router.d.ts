@@ -38,6 +38,14 @@ declare module "vue-router/auto-routes" {
             never
         >;
         "/About": RouteRecordInfo<"/About", "/About", Record<never, never>, Record<never, never>, never>;
+        "/projects/": RouteRecordInfo<"/projects/", "/projects", Record<never, never>, Record<never, never>, never>;
+        "/projects/[slug]": RouteRecordInfo<
+            "/projects/[slug]",
+            "/projects/:slug",
+            { slug: ParamValue<true> },
+            { slug: ParamValue<false> },
+            never
+        >;
     }
 
     /**
@@ -65,6 +73,16 @@ declare module "vue-router/auto-routes" {
             routes: "/About";
             views: never;
             pathParamNames: never;
+        };
+        "src/pages/projects/index.vue": {
+            routes: "/projects/";
+            views: never;
+            pathParamNames: never;
+        };
+        "src/pages/projects/[slug].vue": {
+            routes: "/projects/[slug]";
+            views: never;
+            pathParamNames: "slug";
         };
     }
 

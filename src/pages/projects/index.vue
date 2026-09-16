@@ -1,41 +1,29 @@
 <script setup lang="ts">
 import { projects } from "@/content/projects";
-
-const featuredProjects = projects.filter((project) => project.featured);
 </script>
 
 <template>
-    <section class="hero">
-        <p class="eyebrow">Developer</p>
-        <h1>Developing</h1>
-        <p>developing developing developing developing developing</p>
-    </section>
+    <section class="projects-index">
+        <header class="page-header">
+            <p class="eyebrow">Selected work</p>
+            <h1>Projects</h1>
+            <p>A collection of things I've built.</p>
+        </header>
 
-    <section class="home-section">
-        <div class="section-heading">
-            <h2>Projects</h2>
-            <RouterLink to="/projects">View all</RouterLink>
-        </div>
-
-        <div class="project-list project-list--compact">
+        <div class="project-list">
             <RouterLink
-                v-for="project in featuredProjects"
+                v-for="project in projects"
                 :key="project.slug"
                 class="project-list__item"
                 :to="`/projects/${project.slug}`"
             >
-                <br />
                 <span class="project-list__year">{{ project.year }}</span>
-                <br />
                 <span class="project-list__main">
                     <strong>{{ project.title }}</strong>
-                    <br />
                     <span>{{ project.description }}</span>
-                    <br />
                     <small>{{ project.technologies.join(" · ") }}</small>
                 </span>
                 <span class="project-list__arrow" aria-hidden="true"></span>
-                <br />
             </RouterLink>
         </div>
     </section>

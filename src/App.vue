@@ -1,14 +1,15 @@
-<script setup lang="ts"></script>
-
 <template>
-    <p><strong>Current route path:</strong> {{ $route.fullPath }}</p>
-    <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-    </nav>
-    <main>
-        <RouterView />
-    </main>
-</template>
+    <div class="app-shell">
+        <header class="site-header">
+            <nav aria-label="Main navigation">
+                <RouterLink to="/">Home</RouterLink>
+                <RouterLink to="/projects">Projects</RouterLink>
+                <RouterLink to="/about">About</RouterLink>
+            </nav>
+        </header>
 
-<style scoped src="./styles/app.css" />
+        <main>
+            <RouterView />
+        </main>
+    </div>
+</template>
