@@ -4,6 +4,7 @@ description: A C# API project focused on clean service boundaries and reliable d
 year: 2024
 category: backend
 technologies: [C#, ASP.NET Core, REST API]
+featured: true
 ---
 
 ## The problem
@@ -22,4 +23,4 @@ End with the practical lessons from building and maintaining the API.
 
 PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER
 
-<img src="/images/gambling.png"/>
+<img src="/images/gambling.png" width="600"/>

@@ -4,7 +4,7 @@ description: A full-stack web application with a Vue frontend and C# backend.
 year: 2026
 category: fullstack
 technologies: [Vue, TypeScript, C#, ASP.NET Core]
-featured: true
+featured: false
 ---
 
 ## The problem
