@@ -4,7 +4,7 @@ description: An interface-focused project exploring component architecture and i
 year: 2025
 category: frontend
 technologies: [Vue, TypeScript, CSS]
-featured: true
+featured: false
 ---
 
 ## The idea

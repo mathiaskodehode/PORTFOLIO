@@ -24,3 +24,21 @@ End with the practical lessons from building and maintaining the API.
 PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER
 
 <img src="/images/gambling.png" width="600"/>
+
+```ts
+import { createApp } from "vue";
+import { createRouter, createWebHistory } from "vue-router";
+import { DataLoaderPlugin } from "vue-router/experimental";
+import { routes, handleHotUpdate } from "vue-router/auto-routes";
+import App from "./App.vue";
+// oxlint-disable-next-line import/no-unassigned-import
+import "./style.css";
+
+const router = createRouter({
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes,
+});
+
+if (import.meta.hot) handleHotUpdate(router);
+createApp(App).use(DataLoaderPlugin, { router }).use(router).mount("#app");
+```
