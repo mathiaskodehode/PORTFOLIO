@@ -13,7 +13,7 @@ function wrapIntoSections(html: string): string {
     return html
         .split(/(?=<h2)/)
         .filter(Boolean)
-        .map((section) => `<section>${section}</section>`)
+        .map((s) => `<section>${s}</section>`)
         .join("");
 }
 

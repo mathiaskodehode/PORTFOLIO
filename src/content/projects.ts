@@ -28,5 +28,5 @@ export const projects: Project[] = Object.entries(files)
     .toSorted((a, b) => b.year - a.year);
 
 export function getProjectBySlug(slug: string) {
-    return projects.find((project) => project.slug === slug);
+    return projects.find((p) => p.slug === slug);
 }
