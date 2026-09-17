@@ -21,3 +21,5 @@ End with the practical lessons from building and maintaining the API.
 ## THIS IS ALL PLACEHOLDER
 
 PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER
+
+![placeholder image](/public/images/gambling.png)
