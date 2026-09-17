@@ -7,7 +7,7 @@ import matter from "gray-matter";
 import MarkdownIt from "markdown-it";
 
 const base = process.env.VITE_BASE_PATH || "/";
-const md = new MarkdownIt({ linkify: true });
+const md = new MarkdownIt({ linkify: true, html: true });
 
 function wrapIntoSections(html: string): string {
     return html

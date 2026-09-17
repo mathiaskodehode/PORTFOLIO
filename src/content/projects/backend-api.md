@@ -22,4 +22,4 @@ End with the practical lessons from building and maintaining the API.
 
 PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER
 
-![placeholder image](/public/images/gambling.png)
+<img src="/images/gambling.png"/>
