@@ -24,8 +24,8 @@ function slugFromPath(path: string): string {
 }
 
 export const projects: Project[] = Object.entries(files)
-    .map(([path, data]) => ({ slug: slugFromPath(path), ...data }))
-    .sort((a, b) => b.year - a.year);
+    .map(([path, data]) => Object.assign({ slug: slugFromPath(path) }, data))
+    .toSorted((a, b) => b.year - a.year);
 
 export function getProjectBySlug(slug: string) {
     return projects.find((project) => project.slug === slug);
