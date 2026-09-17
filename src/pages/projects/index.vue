@@ -11,12 +11,7 @@ import { projects } from "@/content/projects";
         </header>
 
         <div class="project-list">
-            <RouterLink
-                v-for="project in projects"
-                :key="project.slug"
-                class="project-list__item"
-                :to="`/projects/${project.slug}`"
-            >
+            <RouterLink v-for="project in projects" :key="project.slug" class="project-list__item" :to="`/projects/${project.slug}`">
                 <span class="project-list__year">{{ project.year }}</span>
                 <span class="project-list__main">
                     <strong>{{ project.title }}</strong>

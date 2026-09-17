@@ -24,8 +24,6 @@ defineProps<{
             </div>
         </div>
 
-        <RouterLink class="project-card__link" :to="`/projects/${project.slug}`">
-            View project <span aria-hidden="true"></span>
-        </RouterLink>
+        <RouterLink class="project-card__link" :to="`/projects/${project.slug}`"> View project <span aria-hidden="true"></span> </RouterLink>
     </article>
 </template>

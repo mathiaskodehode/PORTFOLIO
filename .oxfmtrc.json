@@ -6,5 +6,6 @@
     "semi": true,
     "singleQuote": false,
     "trailingComma": "all",
-    "ignorePatterns": ["typed-router.d.ts"]
+    "ignorePatterns": ["typed-router.d.ts"],
+    "endOfLine": "crlf"
 }
