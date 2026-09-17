@@ -414,3 +414,22 @@ main {
         gap: 3rem;
     }
 }
+
+pre {
+    margin: 1.5rem 0;
+    padding: 1.25rem;
+    background: #151515;
+    border: 1px solid #292929;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+pre code {
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+}
