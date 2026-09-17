@@ -17,6 +17,10 @@ function wrapIntoSections(html: string): string {
         .join("");
 }
 
+function resolveMarkdownImages(html: string): string {
+    return html.replace(/(<img\b[^>]*\bsrc=")\/([^"]*)(")/g, `$1${base}$2$3`);
+}
+
 function projectMarkdown(): Plugin {
     return {
         name: "project-markdown",
@@ -24,7 +28,7 @@ function projectMarkdown(): Plugin {
             if (!id.includes("/content/projects/") || !id.endsWith(".md")) return;
 
             const { data, content } = matter(raw);
-            const html = wrapIntoSections(md.render(content));
+            const html = resolveMarkdownImages(wrapIntoSections(md.render(content)));
 
             return `export default ${JSON.stringify({ ...data, html })};`;
         },
