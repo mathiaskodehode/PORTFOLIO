@@ -6,9 +6,16 @@ const featuredProjects = projects.filter((project) => project.featured);
 
 <template>
     <section class="hero">
-        <p class="eyebrow">Developer</p>
-        <h1>Developing</h1>
+        <p class="eyebrow">PORTFOLIO</p>
+        <h1>MATHIAS HAREIDE</h1>
         <p>developing developing developing developing developing</p>
+    </section>
+
+    <section>
+        <h2>Technologies (auto scrolling carousel)</h2>
+        <div v-for="(e, i) in ['C', 'C#', 'JS', 'TS', 'REACT', 'VUE', 'UNITY GAME ENGINE', 'RAYLIB', 'FIGMA']" :key="i">
+            <p>{{ e }}</p>
+        </div>
     </section>
 
     <section class="home-section">
