@@ -12,9 +12,12 @@ const featuredProjects = projects.filter((project) => project.featured);
     </section>
 
     <section>
-        <h2>Technologies (auto scrolling carousel)</h2>
-        <div v-for="(e, i) in ['C', 'C#', 'JS', 'TS', 'REACT', 'VUE', 'UNITY GAME ENGINE', 'RAYLIB', 'FIGMA']" :key="i">
-            <p>{{ e }}</p>
+        <h2>Technologies</h2>
+        <div class="technologiesSection">
+            <div v-for="(e, i) in ['C', 'C Sharp', 'Javascript', 'Typescript', 'React', 'Vue.js', 'Unity', 'Raylib', 'Figma']" :key="i">
+                <h3>{{ e }}</h3>
+                <img :src="`/images/logos/${e}.webp`" :alt="`${e} logo`" width="128" />
+            </div>
         </div>
     </section>
 
