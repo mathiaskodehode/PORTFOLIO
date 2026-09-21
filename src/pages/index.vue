@@ -14,9 +14,9 @@ const featuredProjects = projects.filter((project) => project.featured);
     <section>
         <h2>Technologies</h2>
         <div class="technologiesSection">
-            <div v-for="(e, i) in ['C', 'C Sharp', 'Javascript', 'Typescript', 'React', 'Vue.js', 'Unity', 'Raylib', 'Figma']" :key="i">
+            <div class="tecnologyItem" v-for="(e, i) in ['C', 'C Sharp', 'Javascript', 'Typescript', 'Git', 'Github', 'React', 'Vue.js', 'Unity', 'Raylib', 'Figma', 'Node.js']" :key="i">
                 <h3>{{ e }}</h3>
-                <img :src="`/images/logos/${e}.webp`" :alt="`${e} logo`" width="128" />
+                <img :src="`/images/logos/${e}.webp`" :alt="`${e} logo`" class="technologyLogo" />
             </div>
         </div>
     </section>

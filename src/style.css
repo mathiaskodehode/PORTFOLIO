@@ -25,6 +25,17 @@ body {
     gap: 1rem;
 }
 
+.tecnologyItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.technologyLogo {
+    max-width: 64px;
+}
+
 button,
 input {
     font: inherit;
