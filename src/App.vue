@@ -4,7 +4,7 @@
             <nav aria-label="Main navigation">
                 <RouterLink to="/">Home</RouterLink>
                 <RouterLink to="/projects">Projects</RouterLink>
-                <RouterLink to="/about">About</RouterLink>
+                <RouterLink to="/cv">CV</RouterLink>
             </nav>
         </header>
 

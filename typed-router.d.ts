@@ -45,9 +45,9 @@ declare module 'vue-router/auto-routes' {
       { path: ParamValue<false> },
       | never
     >,
-    '/About': RouteRecordInfo<
-      '/About',
-      '/About',
+    '/CV': RouteRecordInfo<
+      '/CV',
+      '/CV',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -95,9 +95,9 @@ declare module 'vue-router/auto-routes' {
       pathParamNames:
         | 'path'
     }
-    'src/pages/About.vue': {
+    'src/pages/CV.vue': {
       routes:
-        | '/About'
+        | '/CV'
       views:
         | never
       pathParamNames:

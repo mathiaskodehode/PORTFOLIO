@@ -7,7 +7,7 @@ const featuredProjects = projects.filter((project) => project.featured);
 <template>
     <section class="hero">
         <p class="eyebrow">PORTFOLIO</p>
-        <h1>MATHIAS HAREIDE</h1>
+        <h1>Mathias Hareide</h1>
         <p>developing developing developing developing developing</p>
     </section>
 
