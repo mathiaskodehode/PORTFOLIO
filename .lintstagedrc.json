@@ -1,4 +1,4 @@
 {
-    "*.{js,jsx,ts,tsx,vue,json,css,md,html}": "oxfmt --write",
-    "*.{js,jsx,ts,tsx,vue}": "oxlint"
+    "*.{js,jsx,ts,tsx,vue,json,css,md,html}": "oxfmt --write --config ./.oxfmtrc.json .",
+    "*.{js,jsx,ts,tsx,vue}": "oxlint --config ./.oxfmtrc.json"
 }
