@@ -10,20 +10,23 @@ defineProps<{
     <article class="project-card">
         <div class="project-card__body">
             <div class="project-card__meta">
-                <span class="project-card__category">{{ project.category }}</span>
-                <span v-if="project.featured" class="project-card__featured">Featured</span>
+                <div class="project-card__category">{{ project.category }}</div>
+                <div v-if="project.featured" class="project-card__featured">Featured</div>
             </div>
 
             <h2>{{ project.title }}</h2>
             <p>{{ project.description }}</p>
 
             <div class="project-card__tags">
-                <span v-for="technology in project.technologies" :key="technology">
+                <div v-for="technology in project.technologies" :key="technology">
                     {{ technology }}
-                </span>
+                </div>
             </div>
         </div>
 
-        <RouterLink class="project-card__link" :to="`/projects/${project.slug}`"> View project <span aria-hidden="true"></span> </RouterLink>
+        <RouterLink class="project-card__link" :to="`/projects/${project.slug}`">
+            View project
+            <div aria-hidden="true"></div>
+        </RouterLink>
     </article>
 </template>

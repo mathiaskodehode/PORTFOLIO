@@ -181,7 +181,7 @@ main {
     margin-top: 1.25rem;
 }
 
-.project-card__tags span {
+.project-card__tags div {
     padding: 0.35rem 0.55rem;
     border: 1px solid #333;
     border-radius: 999px;
@@ -276,7 +276,7 @@ main {
     letter-spacing: -0.02em;
 }
 
-.project-list__main span {
+.project-list__main div {
     color: #999;
     line-height: 1.55;
 }

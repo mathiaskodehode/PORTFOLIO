@@ -19,13 +19,13 @@ const featuredProjects = projects.filter((project) => project.featured);
 
         <div class="project-list project-list--compact">
             <RouterLink v-for="project in featuredProjects" :key="project.slug" class="project-list__item" :to="`/projects/${project.slug}`">
-                <span class="project-list__year">{{ project.year }}</span>
-                <span class="project-list__main">
+                <div class="project-list__year">{{ project.year }}</div>
+                <div class="project-list__main">
                     <strong>{{ project.title }}</strong>
-                    <span>{{ project.description }}</span>
+                    <div>{{ project.description }}</div>
                     <small>{{ project.technologies.join(" · ") }}</small>
-                </span>
-                <span class="project-list__arrow" aria-hidden="true"></span>
+                </div>
+                <div class="project-list__arrow" aria-hidden="true"></div>
             </RouterLink>
         </div>
     </section>
