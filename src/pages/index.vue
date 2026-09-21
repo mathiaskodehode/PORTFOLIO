@@ -2,6 +2,7 @@
 import { projects } from "@/content/projects";
 
 const featuredProjects = projects.filter((project) => project.featured);
+const logoPath = (name: string) => `${import.meta.env.BASE_URL}images/logos/${name}.webp`;
 </script>
 
 <template>
@@ -16,7 +17,7 @@ const featuredProjects = projects.filter((project) => project.featured);
         <div class="technologiesSection">
             <div class="tecnologyItem" v-for="(e, i) in ['C', 'C Sharp', 'Javascript', 'Typescript', 'Git', 'Github', 'React', 'Vue.js', 'Unity', 'Raylib', 'Figma', 'Node.js']" :key="i">
                 <h3>{{ e }}</h3>
-                <img :src="`/images/logos/${e}.webp`" :alt="`${e} logo`" class="technologyLogo" />
+                <img :src="logoPath(e)" :alt="`${e} logo`" class="technologyLogo" />
             </div>
         </div>
     </section>
