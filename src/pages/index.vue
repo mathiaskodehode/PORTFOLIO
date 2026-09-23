@@ -40,7 +40,7 @@ const logoPath = (name: string) => `${import.meta.env.BASE_URL}images/logos/${na
     <section class="technologiesSection homeSection">
         <h2>Technologies</h2>
         <div class="technologiesGrid">
-            <div class="tecnologyItem" v-for="(e, i) in ['C', 'C Sharp', 'Javascript', 'Typescript', 'Git', 'Github', 'React', 'Vue.js', 'Unity', 'Raylib', 'Figma', 'Node.js']" :key="i">
+            <div class="tecnologyItem" v-for="(e, i) in ['C', 'C Sharp', 'Javascript', 'Typescript', 'Git', 'Github', 'React', 'Vue.js', 'Unity', 'Raylib', 'Figma', 'Node.js', 'Bash']" :key="i">
                 <h3>{{ e }}</h3>
                 <img :src="logoPath(e)" :alt="`${e} logo`" class="technologyLogo" />
             </div>
