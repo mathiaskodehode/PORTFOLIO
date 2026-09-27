@@ -69,6 +69,37 @@ a {
     gap: 1.25rem;
 }
 
+.locale-switcher {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.locale-switcher__button {
+    padding: 0.25rem 0.6rem;
+    border: 1px solid #292929;
+    border-radius: 6px;
+    background: transparent;
+    color: #aaa;
+    font: inherit;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition:
+        color 150ms ease,
+        border-color 150ms ease;
+}
+
+.locale-switcher__button:hover,
+.locale-switcher__button:focus-visible {
+    color: #fff;
+    border-color: #444;
+}
+
+.locale-switcher__button--active {
+    color: #fff;
+    border-color: #666;
+}
+
 .site-header nav a,
 .section-heading a,
 .back-link {

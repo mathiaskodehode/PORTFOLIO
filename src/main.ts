@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { DataLoaderPlugin } from "vue-router/experimental";
 import { routes, handleHotUpdate } from "vue-router/auto-routes";
 import App from "./App.vue";
+import { i18n } from "./i18n";
 // oxlint-disable-next-line import/no-unassigned-import
 import "./style.css";
 
@@ -13,4 +14,4 @@ const router = createRouter({
 
 if (import.meta.hot) handleHotUpdate(router);
 
-createApp(App).use(DataLoaderPlugin, { router }).use(router).mount("#app");
+createApp(App).use(DataLoaderPlugin, { router }).use(router).use(i18n).mount("#app");

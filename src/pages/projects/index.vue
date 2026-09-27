@@ -1,13 +1,19 @@
 <script setup lang="ts">
-import { projects } from "@/content/projects";
+import { computed } from "vue";
+import { useI18n } from "vue-i18n";
+import { getProjects } from "@/content/projects";
+import type { Locale } from "@/i18n";
+
+const { t, locale } = useI18n();
+const projects = computed(() => getProjects(locale.value as Locale));
 </script>
 
 <template>
     <section class="projects-index">
         <header class="page-header">
-            <p class="eyebrow">Selected work</p>
-            <h1>Projects</h1>
-            <p>A collection of things I've built.</p>
+            <p class="eyebrow">{{ t("projects.index.eyebrow") }}</p>
+            <h1>{{ t("projects.index.title") }}</h1>
+            <p>{{ t("projects.index.intro") }}</p>
         </header>
 
         <div class="project-list">

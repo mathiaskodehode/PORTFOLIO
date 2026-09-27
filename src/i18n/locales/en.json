@@ -1,0 +1,50 @@
+{
+    "nav": {
+        "home": "Home",
+        "projects": "Projects",
+        "cv": "CV"
+    },
+    "home": {
+        "eyebrow": "PORTFOLIO",
+        "title": "Mathias Hareide",
+        "tagline": "developing developing developing developing developing",
+        "aboutHeading": "About me",
+        "aboutBody": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi iusto consequatur illum placeat nisi reprehenderit dignissimos et saepe ab impedit tenetur deleniti repudiandae sed veritatis eligendi natus, doloribus esse eaque, perspiciatis, debitis sit quibusdam maiores corrupti soluta? Facilis numquam adipisci atque, aut a minima distinctio doloribus, nihil ab odio explicabo aspernatur tenetur nisi voluptates id asperiores architecto eius alias nam! Delectus, iure fuga ratione deserunt necessitatibus recusandae maiores dignissimos!",
+        "projectsHeading": "Projects",
+        "viewAll": "View all",
+        "technologiesHeading": "Technologies"
+    },
+    "cv": {
+        "eyebrow": "CV",
+        "title": "Curriculum vitae",
+        "body": "cv cv cv cv"
+    },
+    "projects": {
+        "index": {
+            "eyebrow": "Selected work",
+            "title": "Projects",
+            "intro": "A collection of things I've built."
+        },
+        "notFound": {
+            "eyebrow": "404",
+            "title": "Project not found",
+            "back": "Back to projects"
+        },
+        "card": {
+            "featured": "Featured",
+            "viewProject": "View project"
+        },
+        "post": {
+            "backLink": "Projects",
+            "builtWith": "Built with",
+            "github": "GitHub",
+            "liveSite": "Live site"
+        }
+    },
+    "notFound": {
+        "eyebrow": "404",
+        "title": "Page not found",
+        "body": "The page you're looking for doesn't exist.",
+        "back": "Back home"
+    }
+}
