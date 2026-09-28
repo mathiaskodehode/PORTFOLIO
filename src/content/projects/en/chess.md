@@ -1,9 +1,9 @@
 ---
-title: chess frontend
-description: A modular chess ui engine
+title: Chess Frontend
+description: A modular chess UI engine
 year: 2026
 category: frontend
-technologies: [vite, javascript, chess.js]
+technologies: [Vite, JavaScript, chess.js]
 featured: true
 ---
 
@@ -13,21 +13,17 @@ featured: true
 
 ## Overview
 
-In this project, I built a chess UI using vanilla JavaScript, HTML, and CSS. The engine uses pure DOM manipulation and delegates chess rules (such as legal moves and checkmate detection) to `chess.js`.
-
-The implementation focuses on modular design, state encapsulation, coordinate translation, and user interaction.
+In this project, I built a chess UI using Vanilla JavaScript, HTML, and CSS. I used pure DOM manipulation for the interface and relied on `chess.js` to handle the chess rules, such as legal move validation and checkmate detection.
 
 ---
 
 ## Key Implementation Decisions
 
-### Inverting 2D Grid Coordinates to Match Chess Notation
+### Flipping the Y-axis to match the board orientation
 
-To align the internal representation from `chess.js` with the visual board without altering underlying data structures, the Y-axis coordinate is flipped during rendering:
+To align the board representation from `chess.js` with my visual board, I flip the Y-axis during rendering. Since `chess.js` returns a nested array where row index 0 represents rank 8 and row index 7 represents rank 1, while my visual board coordinates map index 0 to rank 1, while my visual board is structured from row 1 to row 8, I use `7 - y` to place each piece on the correct square:
 
 ```javascript
-const board = this.#game.board();
-
 for (let y = 0; y < 8; y++) {
     for (let x = 0; x < 8; x++) {
         const pieceData = board[y][x];
@@ -40,13 +36,11 @@ for (let y = 0; y < 8; y++) {
 }
 ```
 
-By mapping array index `y` to index `7 - y`, the visual board correctly reflects the standard board orientation while preserving natural array indexing in memory.
-
 ---
 
-### Streamlining DOM Generation
+### Streamlining DOM generation
 
-Frequent DOM construction can clutter application logic. A tiny utility wrapper abstracts attribute assignment and parent node attachment into a single declarative call:
+I created a utility wrapper that combines attribute assignment and parent node attachment into a single function call:
 
 ```javascript
 this.#element = createElement(
@@ -60,13 +54,13 @@ this.#element = createElement(
 );
 ```
 
-This utility handles element instantiation and attribute binding internally, reducing boilerplates across the `Board`, `Square`, and `Piece` modules.
+The utility function handles element creation and attribute binding internally. This reduces boilerplate code across the `Board`, `Square`, and `Piece` modules and keeps the DOM generation logic more consistent.
 
 ---
 
-### State-Driven Click Dispatching
+### Handling clicks based on the current state
 
-Rather than adding a unique event listener to every piece, a single click handler manages all interaction logic sequentially based on current selection state:
+Instead of creating separate event listeners for pieces and squares, I bound all squares to a single, centralized state-driven handler. This function evaluates each click based on the current selection state and determines the next logical action:
 
 ```javascript
 handleSquareClick(square) {
@@ -103,9 +97,19 @@ handleSquareClick(square) {
 }
 ```
 
+If no piece is selected, the handler selects the clicked piece, provided that the square is occupied. Clicking the selected piece again clears the selection, while clicking another piece of the same color transfers the selection to that piece.
+
+Any other click is treated as a potential move and passed to `chess.js` for validation. If the move is legal, I display the last move and re-render the board. If the move is illegal, the selection is cleared and the board remains unchanged.
+
 #### Selection Flow Overview
 
-1. **Initial Selection:** Validates piece presence before storing selection state.
-2. **Deselection:** Toggles selection off if the same square is clicked twice.
-3. **Selection Transfer:** Directly updates target piece if clicking another friendly piece.
-4. **Move Execution:** Passes origin and target standard algebraic notations to `chess.js` to validate legal movement and handle piece capture or pawn promotion automatically.
+1. **Initial selection:** Check whether the clicked square contains a piece before storing it as the selected square.
+2. **Deselection:** Clear the selection if the user clicks the currently selected square again.
+3. **Selection transfer:** Select the new piece if the user clicks another piece of the same color.
+4. **Move execution:** Pass the origin and target squares to `chess.js` using standard algebraic notation. The library validates the move and handles captures and pawn promotion.
+
+## What I Could Add Next
+
+- **Board Inversion:** Adding a toggle to flip the view so the board can be comfortably viewed from both perspectives.
+- **Performance Optimization:** Updating `renderPosition()` to only replace elements that changed during the last turn, rather than clearing and rebuilding the entire DOM grid on every move.
+- **Stockfish Integration:** Adding the Stockfish engine to introduce an AI opponent that players can compete against.
