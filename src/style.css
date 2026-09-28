@@ -420,12 +420,24 @@ pre {
 
 pre code {
     display: block;
+    white-space: pre;
+}
+
+pre code,
+code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     font-size: 0.9rem;
     line-height: 1.6;
-    white-space: pre;
     word-spacing: normal;
     word-break: normal;
+}
+
+.project-post__body :not(pre) > code {
+    padding: 0.15em 0.35em;
+    border-radius: 4px;
+    background: #1b1b1b;
+    color: #ddd;
+    white-space: normal;
 }
 
 @media (max-width: 700px) {
