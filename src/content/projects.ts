@@ -2,7 +2,6 @@ import type { Locale } from "@/i18n";
 
 export type ProjectCategory = "frontend" | "backend" | "fullstack";
 
-// asked ai to give me a bunch of things. mostly placeholder
 export interface Project {
     slug: string;
     title: string;
