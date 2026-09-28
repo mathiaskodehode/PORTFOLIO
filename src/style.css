@@ -25,7 +25,7 @@ body {
     gap: 1rem;
 }
 
-.tecnologyItem {
+.technologiesItem {
     display: flex;
     flex-direction: column;
     justify-content: center;
