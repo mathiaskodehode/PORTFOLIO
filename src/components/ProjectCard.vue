@@ -13,7 +13,7 @@ const { t } = useI18n();
     <article class="project-card">
         <div class="project-card__body">
             <div class="project-card__meta">
-                <div class="project-card__category">{{ project.category }} wowza</div>
+                <div class="project-card__category">{{ project.category }}</div>
                 <div v-if="project.featured" class="project-card__featured">
                     {{ t("projects.card.featured") }}
                 </div>
