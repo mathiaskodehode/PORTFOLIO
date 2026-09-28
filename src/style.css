@@ -1,6 +1,5 @@
-html {
-    background: #101010;
-    color: #e8e8e8;
+* {
+    box-sizing: border-box;
 }
 
 :root {
@@ -10,8 +9,9 @@ html {
     text-rendering: optimizeLegibility;
 }
 
-* {
-    box-sizing: border-box;
+html {
+    background: #101010;
+    color: #e8e8e8;
 }
 
 body {
@@ -21,7 +21,7 @@ body {
 
 .technologiesGrid {
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: repeat(6, 1fr);
     gap: 1rem;
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 .technologyLogo {
-    max-width: 64px;
+    max-width: 48px;
 }
 
 button,
@@ -128,14 +128,13 @@ main {
 .hero h1,
 .page-header h1 {
     margin: 0.5rem 0 1.25rem;
-    font-size: clamp(2.75rem, 7vw, 5.5rem);
-    line-height: 0.98;
+    font-size: 3.5rem;
+    line-height: 1;
     letter-spacing: -0.055em;
 }
 
 .hero > p:not(.eyebrow),
 .page-header > p:not(.eyebrow) {
-    max-width: 680px;
     color: #aaa;
     font-size: 1.1rem;
     line-height: 1.7;
@@ -309,10 +308,6 @@ main {
     transition: transform 150ms ease;
 }
 
-.project-post {
-    max-width: 760px;
-}
-
 .project-post__header {
     margin: 4rem 0 5rem;
 }
@@ -329,13 +324,12 @@ main {
 
 .project-post h1 {
     margin: 0.75rem 0 1rem;
-    font-size: clamp(2.75rem, 7vw, 5rem);
+    font-size: 3rem;
     line-height: 1;
     letter-spacing: -0.055em;
 }
 
 .project-post__intro {
-    max-width: 640px;
     margin: 0;
     color: #aaa;
     font-size: 1.2rem;
@@ -360,7 +354,6 @@ main {
 
 .project-post__body p,
 .project-post__body li {
-    max-width: 680px;
     margin: 0;
     color: #aaa;
     font-size: 1.05rem;
@@ -460,7 +453,7 @@ pre code {
     }
 
     .technologiesGrid {
-        grid-template-columns: auto auto auto;
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .project-list__item {

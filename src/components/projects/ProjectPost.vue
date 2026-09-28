@@ -11,8 +11,6 @@ const { t } = useI18n();
 
 <template>
     <article class="project-post">
-        <RouterLink class="back-link" to="/projects">{{ t("projects.post.backLink") }}</RouterLink>
-
         <header class="project-post__header">
             <p class="project-post__meta">{{ project.year }} · {{ project.category }}</p>
             <h1>{{ project.title }}</h1>
