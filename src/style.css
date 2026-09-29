@@ -52,11 +52,15 @@ a {
 }
 
 .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
     min-height: 76px;
     border-bottom: 1px solid #292929;
+    background: #101010;
 }
 
 .site-brand {
