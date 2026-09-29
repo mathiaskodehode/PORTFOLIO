@@ -12,6 +12,7 @@ export interface Project {
     featured?: boolean;
     githubUrl?: string;
     demoUrl?: string;
+    thumbnailImagePath?: string;
     html: string;
 }
 
