@@ -5,6 +5,8 @@ year: 2026
 category: frontend
 technologies: [Vite, JavaScript, chess.js]
 featured: true
+githubUrl: https://github.com/mathiaskodehode/chess
+demoUrl: https://mathiaskodehode.github.io/chess
 ---
 
 # Building a Chess Game with Vanilla JavaScript
