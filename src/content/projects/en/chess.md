@@ -112,7 +112,12 @@ Any other click is treated as a potential move and passed to `chess.js` for vali
 
 ## What I Could Add Next
 
-- **Board Inversion:** Adding a toggle to flip the view so the board can be comfortably viewed from both perspectives.
-- **Performance Optimization:** Updating `renderPosition()` to only replace elements that changed during the last turn, rather than clearing and rebuilding the entire DOM grid on every move.
-- **Stockfish Integration:** Adding the Stockfish engine to introduce an AI opponent that players can compete against.
-- **Winning:** Let the player know when they've won/lost/stalemate
+- **Board Inversion:** Add a toggle to flip the view so the board can be comfortably viewed from both perspectives.
+- **Performance Optimization:** Update `renderPosition()` to only replace elements that changed during the last turn, rather than clearing and rebuilding the entire DOM grid on every move.
+- **Stockfish Integration:** Add the Stockfish engine to introduce an AI opponent that players can compete against.
+- **Winning:** Let the player know when they've won/lost/stalemate.
+- **Undo:** Let the player undo moves by pressing a button.
+- **Graveyard:** Display captured pieces.
+- **Whose turn is it:** Display whose turn it is.
+- **Rematch button:** Add a button that resets the game.
+- **Board preservation:** Preserve the current game state when refreshing the browser.

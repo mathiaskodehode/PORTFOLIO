@@ -116,3 +116,8 @@ Alle andre clicks blir behandla som eit mogleg trekk og sende til `chess.js` for
 - **Performance:** Oppdatere `renderPosition()` slik at berre elementa som blei endra under det siste trekket, blir erstatta. Då slepp eg å cleare og byggje opp heile DOM grid-en på nytt etter kvart trekk.
 - **Stockfish:** Integrere Stockfish for å leggje til ein AI-motstandar som spelarar kan konkurrere mot.
 - **Vinn:** Informer spelaren når dei har vunne/tapt/uavgjort
+- **Angre:** La spelaren andre trekk ved å trykke ein knapp.
+- **Gravplass:** Vis captured brikker.
+- **Hvem sin tur er det:** Vis hvem sin tur det er.
+- **Rematch-knapp:** Legg til en knapp som tilbakestiller spillet.
+- **Brettbevaring:** Bevar gjeldende spillstatus når nettleseren oppdateres.
