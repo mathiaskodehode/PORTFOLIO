@@ -1,35 +1,25 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import type { Project } from "@/content/projects";
+import { getProjects } from "@/content/projects";
+import type { Locale } from "@/i18n";
 
-defineProps<{
-    project: Project;
-}>();
+const { locale } = useI18n();
 
-const { t } = useI18n();
+const featuredProjects = computed(() => getProjects(locale.value as Locale).filter((project) => project.featured));
 </script>
 
 <template>
-    <article class="project-card">
-        <div class="project-card__body">
-            <div class="project-card__meta">
-                <div class="project-card__category">{{ project.category }}</div>
-                <div v-if="project.featured" class="project-card__featured">
-                    {{ t("projects.card.featured") }}
-                </div>
+    <div class="project-list project-list--compact">
+        <RouterLink v-for="project in featuredProjects" :key="project.slug" class="project-list__item" :to="`/projects/${project.slug}`">
+            <div class="project-list__year">{{ project.year }}</div>
+            <img :src="project.thumbnailImagePath" class="project-list__thumbnail" />
+            <div class="project-list__main">
+                <strong>{{ project.title }}</strong>
+                <div>{{ project.description }}</div>
+                <small>{{ project.technologies.join(" · ") }}</small>
             </div>
-            <h2>{{ project.title }}</h2>
-            <p>{{ project.description }}</p>
-            <div class="project-card__tags">
-                <div v-for="technology in project.technologies" :key="technology">
-                    {{ technology }}
-                </div>
-            </div>
-        </div>
-
-        <RouterLink class="project-card__link" :to="`/projects/${project.slug}`">
-            {{ t("projects.card.viewProject") }}
-            <div aria-hidden="true"></div>
+            <div class="project-list__arrow" aria-hidden="true"></div>
         </RouterLink>
-    </article>
+    </div>
 </template>

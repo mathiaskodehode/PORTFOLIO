@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import { getProjects } from "@/content/projects";
-import type { Locale } from "@/i18n";
+import ProjectCard from "@/components/ProjectCard.vue";
 
-const { t, locale } = useI18n();
-const projects = computed(() => getProjects(locale.value as Locale));
+const { t } = useI18n();
 </script>
 
 <template>
@@ -16,16 +13,6 @@ const projects = computed(() => getProjects(locale.value as Locale));
             <p>{{ t("projects.index.intro") }}</p>
         </header>
 
-        <div class="project-list">
-            <RouterLink v-for="project in projects" :key="project.slug" class="project-list__item" :to="`/projects/${project.slug}`">
-                <div class="project-list__year">{{ project.year }}</div>
-                <div class="project-list__main">
-                    <strong>{{ project.title }}</strong>
-                    <div>{{ project.description }}</div>
-                    <small>{{ project.technologies.join(" · ") }}</small>
-                </div>
-                <div class="project-list__arrow" aria-hidden="true"></div>
-            </RouterLink>
-        </div>
+        <ProjectCard />
     </section>
 </template>
