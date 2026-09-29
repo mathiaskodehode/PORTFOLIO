@@ -113,3 +113,4 @@ Any other click is treated as a potential move and passed to `chess.js` for vali
 - **Board Inversion:** Adding a toggle to flip the view so the board can be comfortably viewed from both perspectives.
 - **Performance Optimization:** Updating `renderPosition()` to only replace elements that changed during the last turn, rather than clearing and rebuilding the entire DOM grid on every move.
 - **Stockfish Integration:** Adding the Stockfish engine to introduce an AI opponent that players can compete against.
+- **Winning:** Let the player know when they've won/lost/stalemate
