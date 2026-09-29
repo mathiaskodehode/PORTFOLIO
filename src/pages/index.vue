@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import ProjectCard from "@/components/ProjectCard.vue";
+import ProjectCard from "@/components/ProjectCards.vue";
 
 const { t } = useI18n();
 
