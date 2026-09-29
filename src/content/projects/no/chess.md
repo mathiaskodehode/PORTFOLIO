@@ -7,6 +7,7 @@ technologies: [Vite, JavaScript, chess.js]
 featured: true
 githubUrl: https://github.com/mathiaskodehode/chess
 demoUrl: https://mathiaskodehode.github.io/chess
+thumbnailImagePath: /images/chessBoard.png
 ---
 
 # Sjakk med Vanilla JavaScript
