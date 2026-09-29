@@ -11,7 +11,7 @@ demoUrl: https://mathiaskodehode.github.io/chess
 
 # Sjakk med Vanilla JavaScript
 
-![Chess Board Overview](path/to/hero-image.png)
+![Chess Board Overview](/images/chessBoard.png)
 
 ## Overview
 
