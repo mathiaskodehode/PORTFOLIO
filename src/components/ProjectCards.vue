@@ -7,13 +7,17 @@ import type { Locale } from "@/i18n";
 const { locale } = useI18n();
 
 const featuredProjects = computed(() => getProjects(locale.value as Locale).filter((project) => project.featured));
+
+function getThumbnailImagePath(path: string) {
+    return `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+}
 </script>
 
 <template>
     <div class="project-list project-list--compact">
         <RouterLink v-for="project in featuredProjects" :key="project.slug" class="project-list__item" :to="`/projects/${project.slug}`">
             <div class="project-list__year">{{ project.year }}</div>
-            <img :src="project.thumbnailImagePath" class="project-list__thumbnail" />
+            <img :src="getThumbnailImagePath(project.thumbnailImagePath!)" class="project-list__thumbnail" />
             <div class="project-list__main">
                 <strong>{{ project.title }}</strong>
                 <div>{{ project.description }}</div>
