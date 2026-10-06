@@ -1,6 +1,6 @@
 ---
-title: Sjakk Frontend
-description: Ein modulær sjakk-UI engine
+title: Sjakk
+description: Ein modulær sjakk UI engine
 year: 2026
 category: frontend
 technologies: [Vite, JavaScript, chess.js]
@@ -10,21 +10,19 @@ demoUrl: https://mathiaskodehode.github.io/chess
 thumbnailImagePath: /images/chessBoard.png
 ---
 
-# Sjakk med Vanilla JavaScript
+# Lage Sjakk med Vanilla JavaScript
 
-![Chess Board Overview](/images/chessBoard.png)
+<img src="/images/chessBoard.png" style="width: 855px"/>
 
-## Overview
+## Oversikt
 
-I dette prosjektet bygde eg ein sjakk-UI med Vanilla JavaScript, HTML og CSS. Eg brukte rein DOM manipulation for interfacet og let `chess.js` handtere sjakkreglane, som validering av lovlege trekk og oppdaging av sjakkmatt.
+I dette prosjektet lagde eg sjakk med vanilla `JavaScript`, `HTML` og `CSS`. Eg brukte rein DOM-manipulasjon for grensesnittet og brukte `chess.js` til reglar og `Stockfish` som AI-en du spelar mot.
 
 ---
 
-## Viktige implementation valg
+## Flipping av Y-aksen for å matche brettorienteringa
 
-### Flipping av Y-aksen for å matche brettorienteringa
-
-For å tilpasse board representation frå `chess.js` til det visuelle brettet mitt, inverterer eg Y-aksen under rendering. `chess.js` returnerer eit nested array der row index 0 representerer rank 8, og row index 7 representerer rank 1. Det visuelle brettet mitt er derimot strukturert med index 0 som rank 1 og index 7 som rank 8. Derfor bruker eg `7 - y` for å plassere kvar brikke på riktig square:
+For å tilpasse brettrepresentasjonen frå `chess.js` til det visuelle brettet, snur eg Y-aksen under rendering. `chess.js` returnerer eit nested array der radindeks 0 representerer rang 8 og radindeks 7 representerer rang 1, medan koordinatane til det visuelle brettet mitt mappar indeks 0 til rang 1. Det visuelle brettet er strukturert frå rad 1 til rad 8, så eg brukar `7 - y` for å plassere kvar brikke på riktig rute:
 
 ```javascript
 for (let y = 0; y < 8; y++) {
@@ -33,7 +31,6 @@ for (let y = 0; y < 8; y++) {
         if (!pieceData) continue;
 
         const piece = new ChessPiece(pieceData.type, pieceData.color === "w" ? "white" : "black", this.#squares[x][7 - y]);
-
         this.addPiece(piece);
     }
 }
@@ -41,9 +38,9 @@ for (let y = 0; y < 8; y++) {
 
 ---
 
-### Streamlining av DOM-generering
+## Forenkling av DOM-genereringa
 
-Eg laga ein utility wrapper som kombinerer attribute assignment og parent node attachment i eitt function call:
+Eg laga ein hjelpefunksjon som kombinerer tilordning av attributt og plassering av elementet i ein forelder til ein funksjon:
 
 ```javascript
 this.#element = createElement(
@@ -57,16 +54,18 @@ this.#element = createElement(
 );
 ```
 
-Utility function-en handterer element creation og attribute binding internt. Dette reduserer boilerplate i `Board`, `Square` og `Piece`-modulane, og held DOM generation logic meir konsistent.
+Hjelpefunksjonen handterer oppretting av element og attribute binding. Dette reduserer mengda boilerplate på tvers av `Board`-, `Square`- og `Piece`-modulane og gjer DOM-genereringa konsistent.
 
 ---
 
-### Handtering av klikk basert på state
+## Handtering av klikk basert på gjeldande tilstand
 
-I staden for å lage separate event listeners for brikker og squares, knytte eg alle squares til éin sentralisert, state-driven handler. Denne function-en vurderer kvar click basert på den gjeldande selection state-en og avgjer kva som skal skje vidare:
+I staden for å opprette separate event listeners for brikker og ruter, knytte eg alle rutene til ein sentralisert, state-driven handler. Denne funksjonen vurderer kvart klikk basert på den gjeldande utvalstilstanden og avgjer kva som skal skje vidare:
 
-```javascript
-handleSquareClick(square) {
+```js
+async handleSquareClick(square) {
+    if (this.#isEngineThinking || this.#game.turn() !== this.#playerColor) return;
+
     if (!this.#selectedSquare) {
         if (!square.piece) return;
         this.selectSquare(square);
@@ -97,28 +96,141 @@ handleSquareClick(square) {
 
     this.showLastMove(move);
     this.renderPosition();
+
+    if (this.#engine && !this.#game.isGameOver()) await this.makeEngineMove();
 }
 ```
 
-Dersom ingen brikke er selected, selectar handler-en den klikka brikka, så lenge square-en er occupied. Dersom brukaren klikkar på den selected brikka igjen, blir selection-en cleara. Dersom brukaren klikkar på ei anna brikke med same color, blir selection-en flytta til den brikka.
+Dersom ingen brikke er vald, vel handteraren den klikka brikka. Dersom spelaren klikkar på den valde brikka igjen, blir valet fjerna. Dersom spelaren klikkar på ei anna brikke med same farge, blir valet flytta til den nye brikka.
 
-Alle andre clicks blir behandla som eit mogleg trekk og sende til `chess.js` for validering. Dersom trekket er lovleg, viser eg det siste trekket og re-render brettet. Dersom trekket er ulovleg, blir selection-en cleara og brettet forblir uendra.
+Alle andre klikk blir behandla som eit mogleg trekk og sendt til `chess.js` for validering. Dersom trekket er lovleg, viser eg det siste trekket og renderar brettet på nytt. Dersom trekket er ulovleg, blir valet fjerna og brettet forblir uendra.
 
-#### Oversikt over selection flow
+---
 
-1. **Initial selection:** Sjekk om den klikka square-en inneheld ei brikke før ho blir lagra som selected square.
-2. **Deselection:** Fjern selection dersom brukaren klikkar på den currently selected square-en igjen.
-3. **Selection transfer:** Vel den nye brikka dersom brukaren klikkar på ei anna brikke med same color.
-4. **Move execution:** Send origin og target squares til `chess.js` ved å bruke standard algebraic notation. Library-en validerer trekket og handterer captures og pawn promotion.
+## Stockfish
 
-## Ting eg kan byggje vidare på
+`StockfishEngine`-klassen har ein Web Worker og kommuniserer med han gjennom UCI-protokollen (Universal Chess Interface), medan `ChessBoard` har ansvar for å utføre og rendere trekk. Målet er å halde dei ulike delane av applikasjonen separate og modulære.
 
-- **Board Inversion:** Leggje til ein toggle slik at board view kan snuast og bli lettare å sjå frå begge perspektiv.
-- **Performance:** Oppdatere `renderPosition()` slik at berre elementa som blei endra under det siste trekket, blir erstatta. Då slepp eg å cleare og byggje opp heile DOM grid-en på nytt etter kvart trekk.
-- **Stockfish:** Integrere Stockfish for å leggje til ein AI-motstandar som spelarar kan konkurrere mot.
-- **Vinn:** Informer spelaren når dei har vunne/tapt/uavgjort
-- **Angre:** La spelaren andre trekk ved å trykke ein knapp.
-- **Gravplass:** Vis captured brikker.
-- **Hvem sin tur er det:** Vis hvem sin tur det er.
-- **Rematch-knapp:** Legg til en knapp som tilbakestiller spillet.
-- **Brettbevaring:** Bevar gjeldende spillstatus når nettleseren oppdateres.
+```js
+export class StockfishEngine {
+    #worker = null;
+    #isReady = false;
+    #onMoveCallback = null;
+
+    constructor() {
+        const workerPath = `${import.meta.env.BASE_URL}stockfish.js`;
+        this.#worker = new Worker(workerPath);
+        this.#initWorker();
+    }
+
+    #initWorker() {
+        this.#worker.onmessage = (event) => {
+            const line = event.data;
+            if (line === "readyok") this.#isReady = true;
+            if (line.startsWith("bestmove")) {
+                const parts = line.split(" ");
+                const bestMoveStr = parts[1];
+                if (this.#onMoveCallback) {
+                    const callback = this.#onMoveCallback;
+                    this.#onMoveCallback = null;
+                    callback(bestMoveStr);
+                }
+            }
+        };
+
+        this.#send("uci");
+        this.#send("isready");
+    }
+
+    #send(command) {
+        this.#worker.postMessage(command);
+    }
+
+    findBestMove(fen, depth = 10) {
+        depth = depth || 1;
+        return new Promise((resolve) => {
+            this.#onMoveCallback = resolve;
+            this.#send(`position fen ${fen}`);
+            this.#send(`go depth ${depth}`);
+        });
+    }
+}
+```
+
+### Kjøring av motoren i ein Web Worker
+
+Stockfish kjører i ein Web Worker slik at berekningane ikkje blokkerer hovudtråden i nettlesaren. Motoren blir initialisert uavhengig av brettet og kommuniserer gjennom `postMessage()`:
+
+```js
+constructor() {
+    const workerPath = `${import.meta.env.BASE_URL}stockfish.js`;
+    this.#worker = new Worker(workerPath);
+    this.#initWorker();
+}
+```
+
+### Bruk av UCI-protokollen som grensesnitt for StockfishEngine
+
+I staden for å skrive Stockfish logikk rundt i applikasjonen, tilbyr `StockfishEngine` eit lite interface rundt UCI-kommandoane:
+
+```js
+findBestMove(fen, depth = 10) {
+    depth = depth || 1;
+    return new Promise(resolve => {
+        this.#onMoveCallback = resolve;
+        this.#send(`position fen ${fen}`);
+        this.#send(`go depth ${depth}`);
+    });
+}
+```
+
+Den gjeldande spelposisjonen blir konvertert til FEN (Forsyth–Edwards Notation) og sendt til Stockfish, som returnerer eit UCI-trekk gjennom ei `bestmove`-melding. `StockfishEngine` gjer det asynkrone svaret frå Web Workeren om til eit Promise, slik at brettet kan behandle motorkalkulasjonane som ein asynkron operasjon i staden for å handtere worker-callbacks sjølv.
+
+Dette held Stockfish isolert frå resten av applikasjonen.
+
+### Halde speltilstand og motorkalkulasjon separert
+
+Stockfish bereknar berre trekket. Trekket som blir returnert blir framleis sendt gjennom `chess.js` før tilstanden til brettet blir endra:
+
+```js
+const move = this.#game.move({
+    from: fromNotation,
+    to: toNotation,
+    promotion: promotion,
+});
+```
+
+Dette gir kvar del av applikasjonen eit tydeleg ansvar.
+
+### Hindre spelarinput under motorkalkulasjon
+
+Sidan motorkalkulasjonane er asynkron, held brettet styr på om Stockfish held på å tenkje:
+
+```js
+if (this.#isEngineThinking || this.#game.turn() !== this.#playerColor) return;
+```
+
+Dette hindrar spelaren i å gjere trekk medan ei motorkalkulasjon ventar, og sørgjer for at trekk berre kan gjerast av spelaren når det er spelaren sin tur.
+
+Motoren tek også vare på FEN-en før berekninga startar:
+
+```js
+const currentFen = this.#game.fen();
+const bestMoveUCI = await this.#engine.findBestMove(currentFen, 1);
+```
+
+Dette gjer at motoren arbeider med eit spesifikt augeblikk av spelposisjonen, i staden for å vere direkte avhengig av ein speltilstand som kan endre seg medan berekninga pågår.
+
+---
+
+## Kva eg kan leggje til vidare
+
+- **Brettinvertering:** Legg til ein knapp for å snu brettet slik at det kan visast komfortabelt frå begge perspektiv.
+- **Ytingsoptimalisering:** Oppdater `renderPosition()` slik at berre elementa som har endra seg sidan førre trekk blir erstatta, i staden for å tømme og byggje opp heile DOM-rutenettet på nytt for kvart trekk.
+- **Vinne:** Vis spelaren når han har vunne, tapt eller når spelet endar med patt (uavgjort heiter tydligvis patt i sjakk).
+- **Angre:** La spelaren angre trekk ved å trykkje på ein knapp.
+- **Graveyard:** Vis brikkene som har blitt slått.
+- **Kven sin tur:** Vis kven sin tur det er.
+- **Rematch-knapp:** Legg til ein knapp som startar spelet på nytt.
+- **Ta vare på brettet:** Ta vare på gjeldande speltilstand når nettlesaren blir oppdatert.
+- **Vanskegrad:** Legg til lettare vanskegrader slik at eg faktisk kan vinne ein (1) einaste kamp.
