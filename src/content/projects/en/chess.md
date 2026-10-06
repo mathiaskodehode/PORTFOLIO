@@ -221,6 +221,8 @@ const bestMoveUCI = await this.#engine.findBestMove(currentFen, 1);
 
 This means the engine operates on a specific snapshot of the game position rather than directly depending on mutable board state while it is calculating.
 
+---
+
 ## What I Could Add Next
 
 - **Board Inversion:** Add a toggle to flip the view so the board can be comfortably viewed from both perspectives.
